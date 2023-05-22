@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "326030826492",
+    "project_id": "crashcar-55703",
+    "storage_bucket": "crashcar-55703.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326030826492:android:5817ae8e90b6d0bc263079",
+        "android_client_info": {
+          "package_name": "com.zcode.crashcar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326030826492-gsht2g55ajh0e5341bmksm7onumb4ah8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zcode.crashcar",
+            "certificate_hash": "d63e167ccc345cef56ba4e372a6bac7c840bb943"
+          }
+        },
+        {
+          "client_id": "326030826492-s1dmgf93l1o9acm1kg5cf9footas8hhk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGbHyZIKuBEcyCTh4dyBvJYzl3xbcqcrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326030826492-s1dmgf93l1o9acm1kg5cf9footas8hhk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

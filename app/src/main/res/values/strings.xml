@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CrashCar</string>
+    <string name="tittle_app"><font color="#037F8C">CRASH</font> <font color="#BF5669">CAR</font></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="lblAvisoLegal">He leído y acepto el <font color='#2A3CDF'>Avíso legal y Política de privacidad</font></string>
+</resources>

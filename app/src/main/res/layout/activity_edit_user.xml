@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.profile.activities.EditUserActivity"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_secundary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnBackEditUser"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:src="@drawable/ic_back"
+            android:background="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDITAR PERFIL"
+            android:textSize="19sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                style="@style/Widget.Material3.Button.TextButton"
+                android:id="@+id/btnSaveEditUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/azul_claro"
+                android:layout_gravity="end|center_vertical"
+                android:text="Guardar" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DATOS DEL USUARIO"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:inputType="textCapSentences"
+                        android:hint="Nombre"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp" />
+
+
+                    <EditText
+                        android:id="@+id/txtApellidos"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Apellidos"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DIRECCIÓN"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtCalle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:inputType="textCapSentences"
+                        android:hint="Dirección"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp" />
+
+                    <EditText
+                        android:id="@+id/txtLocalidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:inputType="textCapSentences"
+                        android:hint="Localidad"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp" />
+
+                    <EditText
+                        android:id="@+id/txtCodPos"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Código Postal"
+                        android:inputType="number"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp" />
+
+                    <EditText
+                        android:id="@+id/txtProvincia"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Provincia"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp" />
+
+                    <EditText
+                        android:id="@+id/txtPais"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:inputType="textCapSentences"
+                        android:hint="País"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CONTACTO"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Teléfono"
+                        android:inputType="phone"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
