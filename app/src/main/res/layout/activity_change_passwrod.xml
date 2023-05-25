@@ -141,14 +141,6 @@
                             android:text="CAMBIAR CONTRASEÑA"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
-
-                        <ImageView
-                            android:layout_width="24sp"
-                            android:layout_height="24sp"
-                            android:layout_gravity="start|center_vertical"
-                            android:layout_marginStart="26sp"
-                            android:background="@drawable/ic_restore_pass"
-                            android:backgroundTint="@color/white"/>
                     </FrameLayout>
 
                 </LinearLayout>
