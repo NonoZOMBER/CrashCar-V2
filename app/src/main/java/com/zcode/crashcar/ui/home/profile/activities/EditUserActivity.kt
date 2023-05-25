@@ -17,6 +17,7 @@ import com.zcode.crashcar.api.response.Usuario
 import com.zcode.crashcar.databinding.ActivityEditUserBinding
 import com.zcode.crashcar.ui.home.HomeActivity
 import com.zcode.crashcar.utils.RetrofitObject
+import com.zcode.crashcar.utils.dialogs.DialogAlert
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,7 +38,15 @@ class EditUserActivity : AppCompatActivity(), TextWatcher {
             binding.btnBackEditUser.setOnClickListener { finish() }
             binding.btnSaveEditUser.setOnClickListener {
                 if (btnsaveActive) {
-                    questEditUser()
+                    if (comprobarDatos()) {
+                        questEditUser()
+                    } else {
+                        DialogAlert.showDialogAlert(
+                            this,
+                            "Debes de rellenar todos los campos",
+                            R.raw.ic_caution
+                        )
+                    }
                 } else {
                     finish()
                 }
@@ -48,7 +57,11 @@ class EditUserActivity : AppCompatActivity(), TextWatcher {
                 if (comprobarDatos()) {
                     questEditUser()
                 } else {
-                    showDialogAlert("Debe de introducir todos los datos requeridos")
+                    DialogAlert.showDialogAlert(
+                        this,
+                        "Debes de rellenar todos los campos",
+                        R.raw.ic_caution
+                    )
                 }
             }
         }
@@ -100,7 +113,7 @@ class EditUserActivity : AppCompatActivity(), TextWatcher {
             binding.txtNombre.setText(user.nombre)
             binding.txtApellidos.setText(user.apellidos)
             binding.txtCalle.setText(user.direccion)
-            binding.txtLocalidad.setText(user.codpostal)
+            binding.txtLocalidad.setText(user.localidad)
             binding.txtCodPos.setText(user.codpostal)
             binding.txtPhone.setText(user.telefono)
             binding.txtPais.setText(user.pais)
@@ -118,6 +131,8 @@ class EditUserActivity : AppCompatActivity(), TextWatcher {
 
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
+
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.shape_dialog)
 
         btnOk.setOnClickListener {
             alertDialog.dismiss()
@@ -151,6 +166,7 @@ class EditUserActivity : AppCompatActivity(), TextWatcher {
                     runOnUiThread {
                         prefsSetting.saveUser(response.body()!!)
                         if (intent.extras?.getInt("code", 0) == 1) {
+                            prefsSetting.saveUser(response.body()!!)
                             finish()
                         } else {
                             val intent = Intent(
@@ -159,6 +175,7 @@ class EditUserActivity : AppCompatActivity(), TextWatcher {
                             )
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(intent)
+                            prefsSetting.saveUser(response.body()!!)
                             finish()
                         }
                     }

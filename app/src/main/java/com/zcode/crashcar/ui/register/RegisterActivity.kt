@@ -1,12 +1,15 @@
 package com.zcode.crashcar.ui.register
 
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +17,8 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.auth.FirebaseAuth
 import com.zcode.crashcar.MainApplication
 import com.zcode.crashcar.R
@@ -38,6 +43,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initGoogleApi()
+        mGoogleApiClient.signOut()
         auth = FirebaseAuth.getInstance()
         initComponent()
     }
@@ -70,6 +76,7 @@ class RegisterActivity : AppCompatActivity() {
         }
         binding.btnRegister.setOnClickListener {
             ocultarTeclado()
+            binding.passwordIncorrecta.visibility = View.GONE
             if (Herramientas.isValidEmail(binding.textEmail.text.toString())) {
                 if (binding.textPassword.text.toString() == binding.textRePassword.text.toString()) {
                     if (binding.checkTerms.isChecked) {
@@ -82,12 +89,20 @@ class RegisterActivity : AppCompatActivity() {
                         showDialogAlert("Debes de aceptar los terminos de uso para poder continuar")
                     }
                 } else {
-                    showDialogAlert("Las contraseñas no coinciden")
+                    binding.passwordIncorrecta.visibility = View.VISIBLE
                 }
             } else {
                 showDialogAlertEmail("El email no es válido, por favor vuelve a introducirlo")
             }
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finish()
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun showDialogAlertEmail(msg: String) {
@@ -125,13 +140,26 @@ class RegisterActivity : AppCompatActivity() {
     private val loginGoogleLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (it.resultCode == RESULT_OK) {
-            val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            register(2, account.result.email.toString(), "")
+        if (checkGoogleServicesAvailability(this)) {
+            when (it.resultCode) {
+                RESULT_OK -> {
+                    val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+                    login(2, account.result.email.toString(), "")
+                }
+                RESULT_CANCELED -> {
+                    Log.i("GoogleResponse", "Google response Cancelled")
+                }
+            }
         } else {
             showDialogAlertNotGoogle("Error con los servicios de Google, inténtelo más tarde")
             Log.e("Response", "No ha habido respuesta")
         }
+    }
+
+    private fun checkGoogleServicesAvailability(context: Context): Boolean {
+        val googleApiAvailability = GoogleApiAvailability.getInstance()
+        val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context)
+        return resultCode == ConnectionResult.SUCCESS
     }
 
     private fun register(type: Int, email: String, password: String) {
@@ -276,6 +304,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
         state(0)
+        mGoogleApiClient.signOut()
     }
 
     private fun showDialogAlertNotGoogle(msg: String) {

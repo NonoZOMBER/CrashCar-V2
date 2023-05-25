@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_partes">
+    <fragment
+        android:id="@+id/nav_partes"
+        android:name="com.zcode.crashcar.ui.home.list_partes.ListPartesFragment"
+        android:label="fragment_list_partes"
+        tools:layout="@layout/fragment_list_partes" />
+    <fragment
+        android:id="@+id/nav_cars"
+        android:name="com.zcode.crashcar.ui.home.list_vehiculos.ListVehiculosFragment"
+        android:label="fragment_list_vehiculos"
+        tools:layout="@layout/fragment_list_vehiculos" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.zcode.crashcar.ui.home.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_security"
+        android:name="com.zcode.crashcar.ui.home.list_seguros.ListSegurosFragment"
+        android:label="ListSegurosFragment"
+        tools:layout="@layout/fragment_list_seguros"/>
+</navigation>

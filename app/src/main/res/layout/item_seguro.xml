@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_card_seguro"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10sp"
+    android:layout_margin="15sp"
+    app:cardBackgroundColor="@color/color_item"
+    app:cardElevation="5sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10sp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textNameSeguroItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_aseguradora"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textPhoneSeguroItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="@string/lbl_phone_item"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/btnDeleteSeguroItem"
+                android:layout_width="25sp"
+                android:layout_height="25sp"
+                android:elevation="10sp"
+                android:layout_gravity="end|top"
+                android:src="@drawable/ic_delete_item"
+                android:background="@null"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

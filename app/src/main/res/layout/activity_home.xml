@@ -6,4 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="5sp"
+        android:background="@drawable/shape_app_bar_main"
+        android:elevation="10sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CRASH CAR"
+            android:textColor="@color/white"
+            android:layout_gravity="center|center_vertical"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnLogOutHomeScreen"
+            app:layout_constraintStart_toEndOf="@+id/btnUserHomeScreen"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
+
+    <fragment
+        android:id="@+id/main_fragment_nav"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/main_navegation" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="65sp"
+            app:menu="@menu/bottom_nav_menu"
+            android:background="@drawable/shape_bottom_navigation"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:itemActiveIndicatorStyle="@null"
+            app:elevation="10sp"
+            app:labelVisibilityMode="labeled"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

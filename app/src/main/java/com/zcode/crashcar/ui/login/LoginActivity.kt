@@ -1,5 +1,6 @@
 package com.zcode.crashcar.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +18,8 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.auth.FirebaseAuth
 import com.zcode.crashcar.MainApplication.Companion.prefsSetting
 import com.zcode.crashcar.R
@@ -42,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
         initGoogleApi()
+        mGoogleApiClient.signOut()
         initComponent()
     }
 
@@ -82,6 +87,14 @@ class LoginActivity : AppCompatActivity() {
             ocultarTeclado()
             loginGoogle()
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finish()
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun showDialogVerifyEmail(msg: String) {
@@ -215,6 +228,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
         state(0)
+        mGoogleApiClient.signOut()
     }
 
     private fun login(type: Int, email: String, password: String) {
@@ -237,9 +251,11 @@ class LoginActivity : AppCompatActivity() {
                                 response.body()?.usuario?.tipologin ?: 1,
                                 response.body()?.usuario?.id ?: ""
                             )
-                            if(response.body()?.usuario?.tipologin == 1) {
+                            response.body()!!.usuario?.let { prefsSetting.saveUser(it) }
+                            if (response.body()?.usuario?.tipologin == 1) {
                                 auth.signInWithEmailAndPassword(
-                                    binding.textEmail.text.toString(), binding.textPassword.text.toString()
+                                    binding.textEmail.text.toString(),
+                                    binding.textPassword.text.toString()
                                 ).addOnCompleteListener {
                                     val user = auth.currentUser
                                     if (user != null && user.isEmailVerified) {
@@ -248,13 +264,18 @@ class LoginActivity : AppCompatActivity() {
                                                 this@LoginActivity, EditUserActivity::class.java
                                             )
                                             intent.putExtra("code", 0)
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                             startActivity(intent)
+                                            overridePendingTransition(R.anim.anim_show_block, R.anim.anim_hide_block)
+                                            finish()
                                         } else {
                                             val intent = Intent(
                                                 applicationContext, HomeActivity::class.java
                                             )
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                            prefsSetting.saveUser(response.body()!!.usuario!!)
                                             startActivity(intent)
+                                            overridePendingTransition(R.anim.anim_show_block, R.anim.anim_hide_block)
                                             finish()
                                         }
                                     } else {
@@ -267,13 +288,17 @@ class LoginActivity : AppCompatActivity() {
                                         this@LoginActivity, EditUserActivity::class.java
                                     )
                                     intent.putExtra("code", 0)
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                     startActivity(intent)
+                                    overridePendingTransition(R.anim.anim_show_block, R.anim.anim_hide_block)
+                                    finish()
                                 } else {
                                     val intent = Intent(
                                         applicationContext, HomeActivity::class.java
                                     )
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                                     startActivity(intent)
+                                    overridePendingTransition(R.anim.anim_show_block, R.anim.anim_hide_block)
                                     finish()
                                 }
                             }
@@ -386,13 +411,27 @@ class LoginActivity : AppCompatActivity() {
     private val loginGoogleLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if (it.resultCode == RESULT_OK) {
-            val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            login(2, account.result.email.toString(), "")
+        if (checkGoogleServicesAvailability(this)) {
+            when (it.resultCode) {
+                RESULT_OK -> {
+                    val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+                    login(2, account.result.email.toString(), "")
+                }
+
+                RESULT_CANCELED -> {
+                    Log.i("GoogleResponse", "Google response Cancelled")
+                }
+            }
         } else {
             showDialogAlertNotGoogle("Error con los servicios de Google, inténtelo más tarde")
             Log.e("Response", "No ha habido respuesta")
         }
+    }
+
+    private fun checkGoogleServicesAvailability(context: Context): Boolean {
+        val googleApiAvailability = GoogleApiAvailability.getInstance()
+        val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context)
+        return resultCode == ConnectionResult.SUCCESS
     }
 
     fun ocultarTeclado() {

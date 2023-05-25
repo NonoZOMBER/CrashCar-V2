@@ -3,6 +3,7 @@ package com.zcode.crashcar.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -79,6 +80,7 @@ class MainActivity : AppCompatActivity() {
                                 response.body()?.usuario?.tipologin ?: 1,
                                 response.body()?.usuario?.id ?: ""
                             )
+                            response.body()!!.usuario?.let { prefsSetting.saveUser(it) }
                             if (response.body()?.usuario?.nombre == null) {
                                 startActivity(
                                     Intent(
@@ -86,13 +88,13 @@ class MainActivity : AppCompatActivity() {
                                         EditUserActivity::class.java
                                     ).putExtra("code", 0)
                                 )
+                                overridePendingTransition(R.anim.anim_show_block, R.anim.anim_hide_block)
+                                finish()
                             } else {
-                                startActivity(
-                                    Intent(
-                                        applicationContext,
-                                        HomeActivity::class.java
-                                    ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                )
+                                val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                startActivity(intent)
+                                overridePendingTransition(R.anim.anim_show_block, R.anim.anim_hide_block)
                                 finish()
                             }
                         } else if (response.body()?.code == -2) {

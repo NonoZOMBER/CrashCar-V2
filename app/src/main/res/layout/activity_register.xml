@@ -6,16 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.register.RegisterActivity">
 
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="30sp"
-        android:layout_height="30sp"
+    <FrameLayout
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:background="@drawable/shape_btn_close"
         android:layout_margin="15sp"
         android:elevation="10sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_close"
-        android:backgroundTint="#1C1B1F"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_close"
+            android:backgroundTint="#1C1B1F"/>
+
+    </FrameLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progress_bar"
@@ -154,7 +162,7 @@
                 android:id="@+id/passwordIncorrecta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contraseña incorrecta"
+                android:text="Las contraseñas no coinciden"
                 android:visibility="gone"
                 android:textColor="@color/red_2"
                 android:layout_marginStart="30sp"

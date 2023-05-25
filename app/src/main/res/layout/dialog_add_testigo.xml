@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15sp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textTitleAddTestigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NUEVO TESTIGO"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_marginTop="25sp"
+                android:id="@+id/txtNombreTestigo"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/shape_edit_text"
+                android:hint="Nombre"
+                android:inputType="textCapSentences"
+                android:paddingStart="20sp"
+                android:paddingEnd="20sp"
+                android:textColor="@color/black"
+                android:textColorHint="#575757" />
+
+            <EditText
+                android:layout_marginTop="15sp"
+                android:id="@+id/txtDireccionTestigo"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/shape_edit_text"
+                android:hint="Dirección"
+                android:inputType="textCapSentences"
+                android:paddingStart="20sp"
+                android:paddingEnd="20sp"
+                android:textColor="@color/black"
+                android:textColorHint="#575757" />
+
+            <EditText
+                android:layout_marginTop="15sp"
+                android:id="@+id/txtPhoneTestigo"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/shape_edit_text"
+                android:hint="Teléfono"
+                android:inputType="phone"
+                android:paddingStart="20sp"
+                android:paddingEnd="20sp"
+                android:textColor="@color/black"
+                android:textColorHint="#575757" />
+
+            <FrameLayout
+                android:id="@+id/btnSaveTestigo"
+                android:layout_width="match_parent"
+                android:layout_height="58sp"
+                android:layout_marginStart="8sp"
+                android:layout_marginTop="40sp"
+                android:layout_marginEnd="8sp"
+                android:background="@drawable/shape_btn_login"
+                android:elevation="5sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="GUARDAR TESTIGO"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

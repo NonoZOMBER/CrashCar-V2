@@ -18,7 +18,7 @@
                 android:id="@+id/lblTittleAlertDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Guardar Usuario"
+                android:text="Editar Perfil"
                 android:textColor="@color/white"
                 android:layout_margin="10sp"
                 android:textSize="20sp"/>
@@ -29,7 +29,7 @@
             android:id="@+id/lblMessageAlertDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¿Seguro que deseas editar los datos de usuario?"
+            android:text="¿Seguro que deseas editar el perfil?"
             android:layout_margin="10sp"
             android:textSize="18sp"/>
 

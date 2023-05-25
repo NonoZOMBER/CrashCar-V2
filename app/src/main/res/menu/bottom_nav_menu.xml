@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_partes"
+        android:title="Partes"
+        android:icon="@drawable/ic_list"/>
+
+    <item
+        android:id="@+id/nav_cars"
+        android:title="Vehiculos"
+        android:icon="@drawable/ic_car"/>
+
+    <item
+        android:id="@+id/nav_security"
+        android:title="Seguros"
+        android:icon="@drawable/ic_security"/>
+
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Mi Cuenta"
+        android:icon="@drawable/ic_person"/>
+
+</menu>

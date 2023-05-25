@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_secundary"
+    tools:context=".ui.home.activities.vehiculos.VehiculoUsuarioActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_secundary"
+        android:elevation="5sp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_secundary"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/lblVehiculoActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:text="@string/lblRegistrarVehiculo"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="198dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Datos del Vehiculo"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/ic_matricula" />
+
+                        <EditText
+                            android:id="@+id/textMatriculaVehiculoUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Introduce la matrícula"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/ic_car_marca" />
+
+                        <EditText
+                            android:id="@+id/textNameVehiculoUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Introduce la marca"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/ic_car_modelo" />
+
+                        <EditText
+                            android:id="@+id/textModeloVehiculoUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Introduce el modelo"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/ic_country_seguro" />
+
+                        <EditText
+                            android:id="@+id/textPaisMatriculaVehiculoUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Introduce el país de matricula"
+                            android:inputType="textCapSentences"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:layout_marginBottom="14sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <Spinner
+                            android:id="@+id/spinnerTypeVehicle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="7dp" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnRegitrarVehiculoUsuario"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:backgroundTint="@color/azul_claro"
+                android:elevation="10sp"
+                android:text="GUARDAR"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

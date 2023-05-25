@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.profile.activities.ChangePasswrodActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_secundary"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:background="@null"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CAMBIAR CONTRASEÑA"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15sp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/textPasswordActual"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Contraseña Actual"
+                        android:inputType="textPassword"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+                    <TextView
+                        android:id="@+id/passwordIncorrecta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Contraseña incorrecta"
+                        android:visibility="gone"
+                        android:textColor="@color/red_2"
+                        android:layout_marginEnd="15sp"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp" />
+
+                    <EditText
+                        android:id="@+id/textPasswordNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Nueva Contraseña"
+                        android:inputType="textPassword"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+                    <TextView
+                        android:id="@+id/passwordIncorrectaNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="La contraseña debe de tener 8 caracteres como mínimo"
+                        android:visibility="gone"
+                        android:textColor="@color/red_2"
+                        android:layout_marginEnd="15sp"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15sp" />
+
+                    <EditText
+                        android:id="@+id/textRePasswordNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Repite nueva Contraseña"
+                        android:inputType="textPassword"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+                    <TextView
+                        android:id="@+id/passwordIncorrectaReNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Las contraseñas no coinciden"
+                        android:visibility="gone"
+                        android:textColor="@color/red_2"
+                        android:layout_marginEnd="15sp"/>
+
+                    <FrameLayout
+                        android:id="@+id/btnChangePass"
+                        android:layout_width="match_parent"
+                        android:layout_height="58sp"
+                        android:layout_marginStart="8sp"
+                        android:layout_marginTop="60sp"
+                        android:layout_marginEnd="8sp"
+                        android:background="@drawable/shape_btn_login"
+                        android:elevation="5sp"
+                        tools:ignore="UselessParent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="CAMBIAR CONTRASEÑA"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <ImageView
+                            android:layout_width="24sp"
+                            android:layout_height="24sp"
+                            android:layout_gravity="start|center_vertical"
+                            android:layout_marginStart="26sp"
+                            android:background="@drawable/ic_restore_pass"
+                            android:backgroundTint="@color/white"/>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

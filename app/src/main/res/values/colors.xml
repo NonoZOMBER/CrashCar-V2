@@ -11,4 +11,7 @@
     <color name="gris_bottom">#2B2B2B</color>
     <color name="hint">#3C3C3C</color>
     <color name="azul_claro">#8ED7EF</color>
+    <color name="gris">#CCCCCC</color>
+    <color name="textHint">#575757</color>
+    <color name="color_item">#81E8DC</color>
 </resources>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_secundary"
+    tools:context=".ui.home.activities.vehiculos.VehiculoSeguroActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_secundary"
+        android:elevation="5sp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_secundary"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/lblVehiculoActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:text="@string/lblRegistrarVehiculoSeguro"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="28dp"
+        android:layout_marginTop="60sp"
+        tools:layout_editor_absoluteY="198dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Número de póliza"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:layout_marginBottom="14sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/ic_matricula" />
+
+                        <EditText
+                            android:id="@+id/textNumeroPoliza"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Número Póliza"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="35sp"
+                android:layout_marginEnd="20sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Vehículo"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnSelectVehiculoSeguro"
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:layout_gravity="center_vertical|end"
+                    android:background="@drawable/ic_add"
+                    android:backgroundTint="@color/white" />
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listVehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="35sp"
+                android:layout_marginEnd="20sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Carta Verde"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:text="(Opcional)"
+                    android:textSize="16sp" />
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/ic_matricula" />
+
+                        <EditText
+                            android:id="@+id/textNumeroCartaVede"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Número Carta Verde"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/id_date" />
+
+                        <EditText
+                            android:id="@+id/textFechaInicioCartaVerde"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Fecha Inicio (YYYY-MM-DD)"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="14sp"
+                        android:layout_marginEnd="16sp"
+                        android:layout_marginBottom="14sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="7dp"
+                            android:src="@drawable/id_date" />
+
+                        <EditText
+                            android:id="@+id/textFechaVencimientoCartaVerde"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40sp"
+                            android:layout_marginTop="7sp"
+                            android:layout_marginEnd="7sp"
+                            android:layout_marginBottom="7sp"
+                            android:background="@null"
+                            android:hint="Fecha Vencimiento (YYYY-MM-DD)"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/textHint" />
+                    </FrameLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnRegitrarVehiculoSeguro"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:backgroundTint="@color/azul_claro"
+                android:elevation="10sp"
+                android:text="GUARDAR"
+                android:textColor="#2E2E2E"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

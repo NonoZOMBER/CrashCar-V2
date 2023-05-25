@@ -62,7 +62,7 @@ class PrefsSetting(context: Context) {
         saveID(idUser)
     }
 
-    fun saveID(id: String) {
+    private fun saveID(id: String) {
         this.storageSetting.edit().putString(SHARED_USER_ID, id).apply()
     }
 

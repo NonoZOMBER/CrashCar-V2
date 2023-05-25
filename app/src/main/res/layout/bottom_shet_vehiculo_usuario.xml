@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_bottom_shep"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:text="VEHICULOS\nREGISTRADOS"
+        android:textAlignment="center"
+        android:textColor="#4C4C4C"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listSegurosVehiculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp" />
+
+    <TextView
+        android:id="@+id/lblNotItemViewSeguro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblNotItemSeguros"
+        android:textColor="@color/textHint"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:textSize="25sp"/>
+
+</LinearLayout>
