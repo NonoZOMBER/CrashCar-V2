@@ -68,4 +68,8 @@
     <string name="lblFechaParte">Fecha: %s</string>
     <string name="lblDireccionTestigoItem">  Dirección: %s</string>
     <string name="error_connection">No es posible conectar con los servicios de CrashCar en este momento, inténtelo de nuevo más tarde</string>
+    <string name="lblSelectSeguro">SELECCIONA EL SEGURO</string>
+    <string name="lblSelectVehiculoSeguro">SELECCIONA EL VEHÍCULO</string>
+    <string name="lblSelectConductor">SELECCIONA AL CONDUCTOR</string>
+    <string name="verifyMyDataInjected">Los datos han sido importados con éxito</string>
 </resources>

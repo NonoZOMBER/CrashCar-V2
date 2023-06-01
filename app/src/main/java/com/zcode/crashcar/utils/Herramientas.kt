@@ -30,7 +30,7 @@ object Herramientas {
         }
     }
 
-    fun getSpinnerItems(): List<SpinnerItemsTypesVehicles> {
+    fun getSpinnerItemsTypeVehicles(): List<SpinnerItemsTypesVehicles> {
         return listOf(
             SpinnerItemsTypesVehicles(R.drawable.ic_car_type, "Turismo"),
             SpinnerItemsTypesVehicles(R.drawable.ic_truck_type, "Furgoneta/Camión"),
@@ -43,6 +43,26 @@ object Herramientas {
             "turismo" -> R.drawable.ic_car_type
             "furgoneta/camión" -> R.drawable.ic_truck_type
             "motocicleta" -> R.drawable.ic_motocicle_type
+            else -> 0
+        }
+    }
+
+    fun getSpinnerItemsPoints(): List<String> {
+        return listOf(
+            "Seleccionar ...",
+            "Lateral Izquierdo",
+            "Lateral Derecho",
+            "Parte Frontal",
+            "Parte Trasera"
+        )
+    }
+
+    fun getIconPoint(point: String): Int {
+        return when (point) {
+            "Lateral Izquierdo" -> R.drawable.point_left_unselect
+            "Lateral Derecho" -> R.drawable.point_right_unselect
+            "Parte Frontal" -> R.drawable.point_top_unselect
+            "Parte Tasera" -> R.drawable.point_bottom_unselect
             else -> 0
         }
     }

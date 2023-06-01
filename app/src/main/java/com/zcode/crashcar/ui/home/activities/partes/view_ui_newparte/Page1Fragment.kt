@@ -54,22 +54,16 @@ class Page1Fragment : Fragment(), AdapterItemTestigo.OnItemClickListener {
         }
         binding.btnNextPage.setOnClickListener {
             if (comprobar()) {
-                parteItem.fechAccidente = String.format(
-                    "Fecha: %s\nHora: %s",
-                    binding.textFechaAccidente.text.toString(),
-                    binding.textHoraAccidente.text.toString()
-                )
-                parteItem.direccion = String.format(
-                    "Localización: %s\nPaís:%s",
-                    binding.textLocationAccidente.text.toString(),
-                    binding.textPaisAccidente.text.toString()
-                )
+                parteItem.fechAccidente = binding.textFechaAccidente.toString()
+                parteItem.direccion = binding.textLocationAccidente.text.toString()
+                parteItem.horaAccidente = binding.textHoraAccidente.toString()
+                parteItem.paisAccidente = binding.textPaisAccidente.toString()
                 parteItem.visctimas = binding.checkVictimas.isChecked
                 parteItem.damageMaterial = binding.checkDamageObjetos.isChecked
                 parteItem.isOtherVehicles = binding.checkOtherVehicles.isChecked
                 parteItem.testigo = getListStringTestigos()
                 view?.findNavController()
-                    ?.navigate(R.id.go_to_page2, bundleOf("parteItem" to parteItem))
+                    ?.navigate(R.id.go_to_page2, bundleOf("parteItem" to (Gson().toJson(parteItem))))
             } else {
                 DialogAlert.showDialogAlert(
                     requireContext(),

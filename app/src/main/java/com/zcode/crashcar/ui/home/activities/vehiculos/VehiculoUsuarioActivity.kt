@@ -47,7 +47,7 @@ class VehiculoUsuarioActivity : AppCompatActivity() {
 
     private fun initComponent(vehiculoItem: VehiculoItem?) {
         binding.spinnerTypeVehicle.adapter =
-            SpinnerAdapterTypeVehicle(this, Herramientas.getSpinnerItems())
+            SpinnerAdapterTypeVehicle(this, Herramientas.getSpinnerItemsTypeVehicles())
 
         if (vehiculoItem != null) {
             binding.lblVehiculoActivity.text = getString(R.string.lblEditandoVehiculo)

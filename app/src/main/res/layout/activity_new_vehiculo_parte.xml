@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_secundary"
+    tools:context=".ui.home.activities.partes.view_ui_newparte.NewVehiculoParteActivity">
+
+    <ImageButton
+        android:id="@+id/btnShowDialoMyData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_addconductor_seguro"
+        android:backgroundTint="@color/white"
+        android:elevation="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue_secundary"
+        android:elevation="5sp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_secundary"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/lblConductorActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            android:text="REGISTRAR VEHICULO PARTE"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Asegurado * "
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Nombre"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtApellidos"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Apellidos"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtDireccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Dirección"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtCodPostal"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Código Postal"
+                        android:inputType="number"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtPais"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="País"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Teléfono"
+                        android:inputType="phone"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Vehiculo *"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtMarca"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Marca"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtModelo"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Modelo"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtMatricula"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Matrícula"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtPaisMatricula"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="País Matrícula"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkRemolque"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="¿Llevas remolque?"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <LinearLayout
+                        android:id="@+id/containerDataRemolque"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/txtMatriculaRemolque"
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:layout_marginTop="10sp"
+                            android:background="@drawable/shape_edit_text"
+                            android:hint="Matrícula Remolque"
+                            android:inputType="textCapSentences"
+                            android:paddingStart="20sp"
+                            android:paddingEnd="20sp"
+                            android:textColor="@color/black"
+                            android:textColorHint="#575757" />
+
+                        <EditText
+                            android:id="@+id/txtPaisMatriculaRemolque"
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:layout_marginTop="10sp"
+                            android:background="@drawable/shape_edit_text"
+                            android:hint="País Matrícula Remolque"
+                            android:inputType="textCapSentences"
+                            android:paddingStart="20sp"
+                            android:paddingEnd="20sp"
+                            android:textColor="@color/black"
+                            android:textColorHint="#575757" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Aseguradora"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtNombreAseguradora"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Nombre *"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtNPoliza"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Nº Póliza *"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtNCartaVerde"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Nº Carta Verde"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/textFechaInicioCartaVerde"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Fecha Inicio Carta Verde"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+
+                    <EditText
+                        android:id="@+id/textFechaVencimientoCartaVerde"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Fecha Vencimiento Carta Verde"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtAgencia"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Agencia *"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtDireccionAseguradora"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Dirección *"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtPaisAgencia"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="País *"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtTelfAgencia"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Teléfono *"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtEmailAgencia"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Email *"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Conductor * "
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtNombreConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Nombre"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtApellidosConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Apellidos"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtDireccionConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Dirección"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtLocalidadConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Localidad"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtTelfConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Teléfono"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtEmailConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Punto de Choque"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/img_type_vehicle"
+                            android:layout_width="100sp"
+                            android:layout_height="100sp"/>
+
+                        <Spinner
+                            android:id="@+id/select_point"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Observaciones"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="11sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtObservaciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Introduce las observaciones"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Circunstancias"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="11sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="* Estaba estacionado/parado"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="* Salía de un estacionamiento/abriendo puerta"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Iba a estacionar"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Salía de un aparcamiento, de un lugar privado, de un camino de tierra"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Entraba a un aparcamiento, a un lugar privado, a un camino de tierra"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Entraba a una plaza de sentido giratorio"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Circulaba por una plaza de sentido giratorio"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Colisionó en la parte de atrás al otro vehiculo que circulaba en el mismo sentido y en el mismo carril"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Circulaba en el mismo sentido y en carril diferente"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cambiaba de carril"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adelantaba"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Giraba a la derecha"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Giraba a la izquierda"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Daba marcha atrás"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Invadía la parte reservada a la circulación en sentido contrario"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Venía de la derecha en un cruce"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center_vertical">
+
+                        <CheckBox
+                            android:id="@+id/checkC17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No respetó la señal de preferencia o semaforo en rojo"
+                            android:textSize="17sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnRegitrarVehiculoParte"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/azul_claro"
+                android:text="GUARDAR"
+                android:layout_margin="20sp"
+                android:elevation="10sp"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

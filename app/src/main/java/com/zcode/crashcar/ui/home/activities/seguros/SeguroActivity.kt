@@ -64,11 +64,11 @@ class SeguroActivity : AppCompatActivity(), AdapterItemConductor.OnSizeChangeLis
 
     private fun initComponent(seguro: SegurosItem?) {
 
-        adapterConductores = AdapterItemConductor(listConductores, this, this)
+        adapterConductores = AdapterItemConductor(listConductores, this, this, true)
         binding.listConductorNewSeguro.layoutManager = LinearLayoutManager(this)
         binding.listConductorNewSeguro.adapter = adapterConductores
 
-        adapterItemVehiculoSeguro = AdapterItemVehiculoSeguro(listVehiculoSeguro, this, this)
+        adapterItemVehiculoSeguro = AdapterItemVehiculoSeguro(listVehiculoSeguro, this, this, true)
         binding.listVehiculoSeguro.layoutManager = LinearLayoutManager(this)
         binding.listVehiculoSeguro.adapter = adapterItemVehiculoSeguro
 

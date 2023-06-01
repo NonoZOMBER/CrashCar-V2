@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.activities.partes.view_ui_newparte.NewVehiculoParteActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.profile.activities.ChangePasswrodActivity"
             android:exported="false" />
         <activity

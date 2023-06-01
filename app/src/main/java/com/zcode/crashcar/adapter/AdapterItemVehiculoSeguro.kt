@@ -26,8 +26,9 @@ import kotlinx.coroutines.launch
  */
 class AdapterItemVehiculoSeguro(
     private val listVehiculoSeguro: List<VehiculoSeguro>,
-    private val onSizeChangeListener: OnSizeChangeListener,
-    private val onItemClickListener: OnItemClickListener
+    private val onSizeChangeListener: OnSizeChangeListener?,
+    private val onItemClickListener: OnItemClickListener,
+    private val delete: Boolean
 ) :
     RecyclerView.Adapter<AdapterItemVehiculoSeguro.ViewHolder>() {
 
@@ -80,6 +81,7 @@ class AdapterItemVehiculoSeguro(
             nPoliza.text = String.format(itemView.context.getString(R.string.lbl_num_poliza), item.numeroPoliza)
             btnDelete.setOnClickListener { deleteVehiculoSeguro(itemView.context, position) }
             container.setOnClickListener { onItemClickListener.onItemClick(item, position) }
+            if (!delete) btnDelete.visibility = View.GONE
         }
     }
 
@@ -88,7 +90,7 @@ class AdapterItemVehiculoSeguro(
         builder.setMessage(context.getString(R.string.query_delete_vehiculo_seguro))
             .setCancelable(false)
             .setPositiveButton(context.getString(R.string.affirmationResponse)) { _, _ ->
-                onSizeChangeListener.onChangeListVehiculoUsuario(position)
+                onSizeChangeListener?.onChangeListVehiculoUsuario(position)
             }
             .setNegativeButton(context.getString(R.string.negationResponse)) { dialog, _ -> dialog.cancel() }
         val alert = builder.create()

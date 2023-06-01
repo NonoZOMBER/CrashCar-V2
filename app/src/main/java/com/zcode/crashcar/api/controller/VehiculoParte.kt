@@ -7,19 +7,33 @@ import com.google.gson.annotations.SerializedName
  */
 data class VehiculoParte(
     @SerializedName("id")
-    val idVehiculoParte: Int,
+    val id: Int? = null,
     @SerializedName("idVehiculo")
-    val idVehiculoSeguro: Int,
+    var idVehiculo: Int? = null,
     @SerializedName("idSeguro")
-    val idSeguro: Int,
+    var idSeguro: Int? = null,
     @SerializedName("circunstancias")
-    val circunstancias: String, // Lista JSON de objeto preguntas en total 21 Preguntas
+    var circunstancias: String = "", // Lista JSON de objeto preguntas en total 21 Preguntas
     @SerializedName("remolque")
-    val remolque: Boolean,
+    var remolque: Boolean = false,
     @SerializedName("matriculaRemolque")
-    val matriculaRemolque: String,
+    var matriculaRemolque: String? = "",
     @SerializedName("paisMatriculaRemolque")
-    val paisMatriculaRemolque: String,
+    var paisMatriculaRemolque: String? = "",
     @SerializedName("puntoChoque")
-    val puntoChoque: String // El String es el enum seleccionado para marcar el punto de choque del vehiculo
+    var puntoChoque: String = "", // El String es el enum seleccionado para marcar el punto de choque del vehiculo
+    @SerializedName("firma")
+    var firma: String = "",
+    @SerializedName("observaciones")
+    var observaciones: String = "",
+    @SerializedName("idAsegurado")
+    var idAsegurado: Int? = null,
+    @SerializedName("idConductor")
+    var idConductor: Int? = null,
+    @SerializedName("numeroPermisoConducir")
+    var numeroConducir: String = "",
+    @SerializedName("categoriaPermisoConducir")
+    var categoriaPermiso: String = "",
+    @SerializedName("fechaValidezPermisoConducir")
+    var fechaVelidezPermiso: String = ""
 )

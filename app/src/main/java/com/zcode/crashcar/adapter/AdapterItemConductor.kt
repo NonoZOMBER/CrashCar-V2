@@ -15,7 +15,7 @@ import com.zcode.crashcar.api.controller.ConductorItem
 /*
  *    Created by Nono on 24/04/2023.
  */
-class AdapterItemConductor(private val conductores: MutableList<ConductorItem>, private val onSizeChangeListener: OnSizeChangeListener, private val onItemClickListener: OnItemClickListener) :
+class AdapterItemConductor(private val conductores: MutableList<ConductorItem>, private val onSizeChangeListener: OnSizeChangeListener?, private val onItemClickListener: OnItemClickListener, private val delete: Boolean) :
     RecyclerView.Adapter<AdapterItemConductor.ViewHolder>() {
 
     interface OnItemClickListener {
@@ -47,6 +47,7 @@ class AdapterItemConductor(private val conductores: MutableList<ConductorItem>, 
             textPhone.text = String.format(itemView.context.getString(R.string.lbl_phone_item), item.phone)
             container.setOnClickListener { onItemClickListener.onItemClick(item, position) }
             btnDeleteConductor.setOnClickListener { deleteDialogConductor(position, itemView.context) }
+            if (!delete) btnDeleteConductor.visibility = View.GONE
         }
     }
 
@@ -55,7 +56,7 @@ class AdapterItemConductor(private val conductores: MutableList<ConductorItem>, 
         builder.setMessage(context.getString(R.string.query_delete_conductor))
             .setCancelable(false)
             .setPositiveButton(context.getString(R.string.affirmationResponse)) { _, _ ->
-                onSizeChangeListener.onChangeListConductor(position)
+                onSizeChangeListener?.onChangeListConductor(position)
             }
             .setNegativeButton(context.getString(R.string.negationResponse)) { dialog, _ -> dialog.cancel() }
         val alert = builder.create()
