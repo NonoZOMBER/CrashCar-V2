@@ -11,12 +11,12 @@
         android:id="@+id/btnShowDialoMyData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20sp"
         android:background="@drawable/ic_addconductor_seguro"
         android:backgroundTint="@color/white"
         android:elevation="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -581,7 +581,7 @@
                 android:layout_marginStart="20sp"
                 android:layout_marginTop="11sp"
                 android:layout_marginEnd="20sp"
-                android:text="Punto de Choque"
+                android:text="Punto de Choque *"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -609,12 +609,12 @@
                         <ImageView
                             android:id="@+id/img_type_vehicle"
                             android:layout_width="100sp"
-                            android:layout_height="100sp"/>
+                            android:layout_height="100sp" />
 
                         <Spinner
                             android:id="@+id/select_point"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -653,9 +653,9 @@
                         android:id="@+id/txtObservaciones"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="15sp"
                         android:background="@drawable/shape_edit_text"
                         android:hint="Introduce las observaciones"
+                        android:padding="15sp"
                         android:paddingStart="20sp"
                         android:paddingEnd="20sp"
                         android:textColor="@color/black"
@@ -1021,10 +1021,10 @@
                 style="@style/Widget.Material3.Button.IconButton.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/azul_claro"
-                android:text="GUARDAR"
                 android:layout_margin="20sp"
+                android:backgroundTint="@color/azul_claro"
                 android:elevation="10sp"
+                android:text="GUARDAR"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 

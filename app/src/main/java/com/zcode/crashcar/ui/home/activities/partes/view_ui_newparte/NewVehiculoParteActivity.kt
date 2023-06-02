@@ -19,6 +19,7 @@ import com.zcode.crashcar.R
 import com.zcode.crashcar.adapter.AdapterItemConductor
 import com.zcode.crashcar.adapter.AdapterItemSeguros
 import com.zcode.crashcar.adapter.AdapterItemVehiculoSeguro
+import com.zcode.crashcar.api.controller.Asegurado
 import com.zcode.crashcar.api.controller.ConductorItem
 import com.zcode.crashcar.api.controller.ListConductorDni
 import com.zcode.crashcar.api.controller.ListIdVehiculoSeguro
@@ -44,6 +45,7 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
     private lateinit var progressBarData: LottieAnimationView
     private lateinit var viewMyData: LinearLayout
     private lateinit var alertDialogMyData: AlertDialog
+    private var myData: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +65,12 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         binding.btnShowDialoMyData.setOnClickListener {
             showDialogMyData()
         }
+        binding.checkC1.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) binding.checkC2.isChecked = false
+        }
+        binding.checkC2.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) binding.checkC1.isChecked = false
+        }
     }
 
     override fun onStart() {
@@ -70,8 +78,82 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         showDialogMyData()
     }
 
+
+    private fun comprobarCircunstanciasObligatorias(): Boolean {
+        return if (binding.checkC1.isChecked && !binding.checkC2.isChecked) {
+            true
+        } else !binding.checkC1.isChecked && binding.checkC2.isChecked
+    }
+
     private fun registrarVehiculoParte() {
-        //Hacer comprobaciones de datos introducidos antes de reegistrar
+        if (comprobarEditText()) {
+            if (comprobarRemolque()) {
+                if (binding.selectPoint.selectedItemPosition != 0) {
+                    if (comprobarCircunstanciasObligatorias()) {
+                        if (myData) {
+                            guardarConNuevosDatos()
+                        }
+                    } else {
+                        DialogAlert.showDialogAlert(
+                            this,
+                            "Debes seleccionar una de las dos circunstancias obligatorias",
+                            R.raw.ic_caution
+                        )
+                    }
+                } else {
+                    DialogAlert.showDialogAlert(
+                        this,
+                        "Debes de seleccionar el punto de choque más significativo",
+                        R.raw.ic_caution
+                    )
+                }
+            } else {
+                DialogAlert.showDialogAlert(
+                    this,
+                    "Si tienes remolque debes de rellenar sus datos",
+                    R.raw.ic_caution
+                )
+            }
+        } else {
+            DialogAlert.showDialogAlert(
+                this,
+                "Debes de rellenar todos los campos obligatorios",
+                R.raw.ic_caution
+            )
+        }
+    }
+
+    private fun comprobarRemolque(): Boolean {
+        return if (binding.checkRemolque.isChecked && binding.txtMatriculaRemolque.text.isNotEmpty() && binding.txtPaisMatricula.text.isNotEmpty()) {
+            true
+        } else !binding.checkRemolque.isChecked
+    }
+
+    private fun comprobarEditText(): Boolean {
+        return binding.txtNombre.text.isNotEmpty() &&
+                binding.txtApellidos.text.isNotEmpty() &&
+                binding.txtDireccion.text.isNotEmpty() &&
+                binding.txtCodPostal.text.isNotEmpty() &&
+                binding.txtPais.text.isNotEmpty() &&
+                binding.txtPhone.text.isNotEmpty() &&
+                binding.txtEmail.text.isNotEmpty() &&
+                binding.txtMarca.text.isNotEmpty() &&
+                binding.txtModelo.text.isNotEmpty() &&
+                binding.txtMatricula.text.isNotEmpty() &&
+                binding.txtPaisMatricula.text.isNotEmpty() &&
+                binding.txtNombreAseguradora.text.isNotEmpty() &&
+                binding.txtNPoliza.text.isNotEmpty() &&
+                binding.txtAgencia.text.isNotEmpty() &&
+                binding.txtDireccionAseguradora.text.isNotEmpty() &&
+                binding.txtPaisAgencia.text.isNotEmpty() &&
+                binding.txtTelfAgencia.text.isNotEmpty() &&
+                binding.txtEmailAgencia.text.isNotEmpty() &&
+                binding.txtNombreConductor.text.isNotEmpty() &&
+                binding.txtApellidosConductor.text.isNotEmpty() &&
+                binding.txtDireccionConductor.text.isNotEmpty() &&
+                binding.txtLocalidadConductor.text.isNotEmpty() &&
+                binding.txtTelfConductor.text.isNotEmpty() &&
+                binding.txtEmailConductor.text.isNotEmpty()
     }
 
     private fun showDialogMyData() {
@@ -86,11 +168,13 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         alertDialog.setCancelable(false)
 
         btnMyData.setOnClickListener {
+            myData = true
             showActionsMyData()
             alertDialog.dismiss()
         }
 
         btnOtherData.setOnClickListener {
+            myData = false
             alertDialog.dismiss()
         }
 
@@ -114,7 +198,10 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
 
         recyclerMyData.layoutManager = LinearLayoutManager(applicationContext)
         loadSegurosMyData()
-        btnCloseMyData.setOnClickListener { alertDialogMyData.dismiss() }
+        btnCloseMyData.setOnClickListener {
+            myData = false
+            alertDialogMyData.dismiss()
+        }
 
         alertDialogMyData.show()
     }
@@ -379,4 +466,9 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
             alertDialog.dismiss()
         }
     }
+    private fun guardarConNuevosDatos() {
+
+    }
 }
+
+
