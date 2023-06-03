@@ -1,18 +1,29 @@
 package com.zcode.crashcar.ui.home.activities.partes.view_ui_newparte
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.zcode.crashcar.adapter.AdapterVehiculoParte
 import com.zcode.crashcar.api.controller.ParteItem
+import com.zcode.crashcar.api.controller.VehiculoParte
 import com.zcode.crashcar.databinding.FragmentPage2Binding
 
 class Page2Fragment : Fragment() {
     private lateinit var binding: FragmentPage2Binding
     private lateinit var parte: ParteItem
+    private lateinit var listVehiculoA: ArrayList<VehiculoParte>
+    private lateinit var listVehiculoB: ArrayList<VehiculoParte>
+    private lateinit var adapterVehiculoA: AdapterVehiculoParte
+    private lateinit var adapterVehiculoB: AdapterVehiculoParte
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,8 +37,60 @@ class Page2Fragment : Fragment() {
     }
 
     private fun initComponent() {
+        listVehiculoA = ArrayList()
+        listVehiculoB = ArrayList()
+
+        adapterVehiculoA = AdapterVehiculoParte(listVehiculoA)
+        adapterVehiculoB = AdapterVehiculoParte(listVehiculoB)
+
+        binding.listVehiculoA.layoutManager = LinearLayoutManager(requireContext())
+        binding.listVehiculoB.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.listVehiculoA.adapter = adapterVehiculoA
+        binding.listVehiculoB.adapter = adapterVehiculoB
+    }
+
+    override fun onStart() {
+        super.onStart()
         binding.btnNewVehiculoA.setOnClickListener {
-            startActivity(Intent(requireContext(), NewVehiculoParteActivity::class.java))
+            newResultVehiculoA.launch(Intent(requireContext(), NewVehiculoParteActivity::class.java))
         }
+        binding.btnNewVehiculoB.setOnClickListener {
+            newResultVehiculoB.launch(Intent(requireContext(), NewVehiculoParteActivity::class.java))
+        }
+    }
+
+    private val newResultVehiculoA =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                val vehiculoParte = it.data?.getStringExtra("vehiculoParte").toString()
+                loadVehiculoAParte(vehiculoParte)
+            } else {
+                Log.i("ResponseConductor", "No se ha obtenido ningún conductor")
+            }
+        }
+
+    private val newResultVehiculoB =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                val vehiculoParte = it.data?.getStringExtra("vehiculoParte").toString()
+                loadVehiculoBParte(vehiculoParte)
+            } else {
+                Log.i("ResponseConductor", "No se ha obtenido ningún conductor")
+            }
+        }
+
+    private fun loadVehiculoBParte(vehiculoParte: String) {
+        val vehiculoB: VehiculoParte = Gson().fromJson(vehiculoParte, VehiculoParte::class.java)
+        listVehiculoB.clear()
+        listVehiculoB.add(vehiculoB)
+        adapterVehiculoB.notifyDataSetChanged()
+    }
+
+    private fun loadVehiculoAParte(vehiculoParte: String) {
+        val vehiculoA: VehiculoParte = Gson().fromJson(vehiculoParte, VehiculoParte::class.java)
+        listVehiculoA.clear()
+        listVehiculoA.add(vehiculoA)
+        adapterVehiculoA.notifyDataSetChanged()
     }
 }

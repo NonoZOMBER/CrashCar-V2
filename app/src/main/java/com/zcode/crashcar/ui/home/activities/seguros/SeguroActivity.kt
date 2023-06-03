@@ -400,6 +400,6 @@ class SeguroActivity : AppCompatActivity(), AdapterItemConductor.OnSizeChangeLis
         this.position = position
         val intent = Intent(this, ConductorActivity::class.java)
         intent.putExtra("conductor", item.idConductor)
-        startActivity(intent)
+        updateResultConductor.launch(intent)
     }
 }

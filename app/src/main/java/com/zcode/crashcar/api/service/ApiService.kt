@@ -1,5 +1,6 @@
 package com.zcode.crashcar.api.service
 
+import com.zcode.crashcar.api.controller.Asegurado
 import com.zcode.crashcar.api.controller.ChangePassword
 import com.zcode.crashcar.api.controller.ConductorItem
 import com.zcode.crashcar.api.controller.ListPartes
@@ -10,6 +11,7 @@ import com.zcode.crashcar.api.controller.RegisterClass
 import com.zcode.crashcar.api.controller.SegurosItem
 import com.zcode.crashcar.api.controller.TestigoItem
 import com.zcode.crashcar.api.controller.VehiculoItem
+import com.zcode.crashcar.api.controller.VehiculoParte
 import com.zcode.crashcar.api.controller.VehiculoSeguro
 import com.zcode.crashcar.api.controller.VehiculosUsuario
 import com.zcode.crashcar.api.response.ResponseAuth
@@ -105,4 +107,10 @@ interface ApiService {
 
     @PUT("update/testigo/{id}")
     suspend fun updateTestigo(@Path("id") idTestigo: Int, @Body itemTestigo: TestigoItem): Response<TestigoItem>
+
+    @POST("new/asegurado")
+    suspend fun saveAsegurado(@Body asegurado: Asegurado): Response<Asegurado>
+
+    @POST("new/vehiculo-parte")
+    suspend fun saveVehiculoParte(@Body vehiculoParte: VehiculoParte): Response<VehiculoParte>
 }

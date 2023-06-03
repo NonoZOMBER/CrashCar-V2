@@ -8,7 +8,7 @@
     tools:context=".ui.home.activities.partes.view_ui_newparte.NewVehiculoParteActivity">
 
     <ImageButton
-        android:id="@+id/btnShowDialoMyData"
+        android:id="@+id/btn_show_dialog_my_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
@@ -251,6 +251,22 @@
                         android:paddingEnd="20sp"
                         android:textColor="@color/black"
                         android:textColorHint="#575757" />
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text">
+
+                        <Spinner
+                            android:id="@+id/spinnerTypeVehicle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="7dp" />
+
+                    </FrameLayout>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
@@ -495,6 +511,19 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:id="@+id/txtDniConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="DNI"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
                         android:id="@+id/txtNombreConductor"
                         android:layout_width="match_parent"
                         android:layout_height="50sp"
@@ -539,6 +568,32 @@
                         android:layout_marginTop="10sp"
                         android:background="@drawable/shape_edit_text"
                         android:hint="Localidad"
+                        android:inputType="textCapSentences"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtCodPostalConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="Código postal"
+                        android:inputType="number"
+                        android:paddingStart="20sp"
+                        android:paddingEnd="20sp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#575757" />
+
+                    <EditText
+                        android:id="@+id/txtPaisConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/shape_edit_text"
+                        android:hint="País"
                         android:inputType="textCapSentences"
                         android:paddingStart="20sp"
                         android:paddingEnd="20sp"

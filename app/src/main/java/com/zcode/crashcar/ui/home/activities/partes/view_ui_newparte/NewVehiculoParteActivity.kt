@@ -1,9 +1,12 @@
 package com.zcode.crashcar.ui.home.activities.partes.view_ui_newparte
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -19,18 +22,25 @@ import com.zcode.crashcar.R
 import com.zcode.crashcar.adapter.AdapterItemConductor
 import com.zcode.crashcar.adapter.AdapterItemSeguros
 import com.zcode.crashcar.adapter.AdapterItemVehiculoSeguro
+import com.zcode.crashcar.adapter.SpinnerAdapterTypeVehicle
 import com.zcode.crashcar.api.controller.Asegurado
+import com.zcode.crashcar.api.controller.ConductorId
 import com.zcode.crashcar.api.controller.ConductorItem
+import com.zcode.crashcar.api.controller.IdVehiculoSeguro
 import com.zcode.crashcar.api.controller.ListConductorDni
 import com.zcode.crashcar.api.controller.ListIdVehiculoSeguro
 import com.zcode.crashcar.api.controller.ListSeguros
 import com.zcode.crashcar.api.controller.SegurosItem
+import com.zcode.crashcar.api.controller.VehiculoItem
 import com.zcode.crashcar.api.controller.VehiculoParte
 import com.zcode.crashcar.api.controller.VehiculoSeguro
 import com.zcode.crashcar.databinding.ActivityNewVehiculoParteBinding
+import com.zcode.crashcar.utils.Animations
 import com.zcode.crashcar.utils.Herramientas
 import com.zcode.crashcar.utils.RetrofitObject
 import com.zcode.crashcar.utils.dialogs.DialogAlert
+import com.zcode.crashcar.utils.objects.Circunstancia
+import com.zcode.crashcar.utils.objects.Circunstancias
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -62,7 +72,7 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         binding.btnBack.setOnClickListener {
             finish()
         }
-        binding.btnShowDialoMyData.setOnClickListener {
+        binding.btnShowDialogMyData.setOnClickListener {
             showDialogMyData()
         }
         binding.checkC1.setOnCheckedChangeListener { _, isChecked ->
@@ -71,6 +81,54 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         binding.checkC2.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) binding.checkC1.isChecked = false
         }
+        binding.checkRemolque.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                binding.containerDataRemolque.animation = Animations.fadeInAnimation(this)
+                binding.containerDataRemolque.visibility = View.VISIBLE
+            } else {
+                binding.containerDataRemolque.animation = Animations.fadeOutAnimation(this)
+                binding.containerDataRemolque.visibility = View.VISIBLE
+            }
+        }
+        binding.spinnerTypeVehicle.adapter =
+            SpinnerAdapterTypeVehicle(this, Herramientas.getSpinnerItemsTypeVehicles())
+
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, Herramientas.getSpinnerItemsPoints())
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.selectPoint.adapter = adapter
+    }
+
+    private fun showDialogVerifySave() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_verify_save_vehiclepart, null, false)
+        val dialogBuilder = AlertDialog.Builder(this).setView(dialogView)
+
+        val btnOk: FrameLayout = dialogView.findViewById(R.id.btn_ok_save_vehiclepart)
+        val btnCancel: FrameLayout = dialogView.findViewById(R.id.btn_cancel_save_vehiclepart)
+
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.shape_dialog)
+        btnOk.setOnClickListener {
+            alertDialog.dismiss()
+            if (myData) {
+                guardarAsegurado()
+            } else {
+                guardarAsegurado()
+            }
+        }
+        btnCancel.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+    private fun getTypeVehicle(): String {
+        if (binding.spinnerTypeVehicle.selectedItemPosition == 0) return "Turismo"
+        if (binding.spinnerTypeVehicle.selectedItemPosition == 1) return "Furgoneta/Camión"
+        if (binding.spinnerTypeVehicle.selectedItemPosition == 2) return "Motocicleta"
+        return ""
     }
 
     override fun onStart() {
@@ -90,9 +148,7 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
             if (comprobarRemolque()) {
                 if (binding.selectPoint.selectedItemPosition != 0) {
                     if (comprobarCircunstanciasObligatorias()) {
-                        if (myData) {
-                            guardarConNuevosDatos()
-                        }
+                        showDialogVerifySave()
                     } else {
                         DialogAlert.showDialogAlert(
                             this,
@@ -153,7 +209,10 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
                 binding.txtDireccionConductor.text.isNotEmpty() &&
                 binding.txtLocalidadConductor.text.isNotEmpty() &&
                 binding.txtTelfConductor.text.isNotEmpty() &&
-                binding.txtEmailConductor.text.isNotEmpty()
+                binding.txtEmailConductor.text.isNotEmpty() &&
+                binding.txtDniConductor.text.isNotEmpty() &&
+                binding.txtPaisConductor.text.isNotEmpty() &&
+                binding.txtCodPostalConductor.text.isNotEmpty()
     }
 
     private fun showDialogMyData() {
@@ -260,9 +319,7 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         }
     }
 
-    override fun onChange(sizeList: Int) {
-        //Nada
-    }
+    override fun onChange(sizeList: Int) {}
 
     override fun onItem(item: SegurosItem) {
         vehiculoParte.idSeguro = item.idSeguro
@@ -332,12 +389,14 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
                     }
                 }
             } catch (e: Exception) {
-                DialogAlert.showDialogAlert(
-                    this@NewVehiculoParteActivity,
-                    "No es posible conectar con los servidores de Crash Car",
-                    R.raw.ic_connection_error
-                )
-                alertDialogMyData.dismiss()
+                runOnUiThread {
+                    DialogAlert.showDialogAlert(
+                        this@NewVehiculoParteActivity,
+                        "No es posible conectar con los servidores de Crash Car",
+                        R.raw.ic_connection_error
+                    )
+                    alertDialogMyData.dismiss()
+                }
             }
         }
     }
@@ -424,6 +483,9 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         binding.txtTelfConductor.setText(item.phone)
         binding.txtEmailConductor.setText(item.email)
         binding.txtLocalidadConductor.setText(item.localidad)
+        binding.txtDniConductor.setText(item.dniConductor)
+        binding.txtCodPostalConductor.setText(item.codpostal.toString())
+        binding.txtPaisConductor.setText(item.pais)
         loadDataAsegurado()
     }
 
@@ -466,8 +528,264 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
             alertDialog.dismiss()
         }
     }
-    private fun guardarConNuevosDatos() {
 
+    private fun guardarAsegurado() {
+
+        val aseguarado = Asegurado(
+            null,
+            binding.txtNombre.text.toString(),
+            binding.txtApellidos.text.toString(),
+            binding.txtDireccion.text.toString(),
+            binding.txtCodPostal.text.toString(),
+            binding.txtPais.text.toString(),
+            binding.txtPhone.text.toString(),
+            binding.txtEmail.text.toString()
+        )
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitObject.getCallRetrofit().saveAsegurado(aseguarado)
+                if (response.isSuccessful) {
+                    runOnUiThread {
+                        vehiculoParte.idAsegurado = response.body()?.id
+                        if (myData) {
+                            createNewVehiculoParte()
+                        } else {
+                            guardarVehiculo()
+                        }
+                    }
+                } else {
+                    runOnUiThread {
+                        DialogAlert.showDialogAlert(
+                            this@NewVehiculoParteActivity,
+                            "No es posible conectar con los servidores de Crash Car",
+                            R.raw.ic_connection_error
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    DialogAlert.showDialogAlert(
+                        this@NewVehiculoParteActivity,
+                        "No es posible conectar con los servidores de Crash Car",
+                        R.raw.ic_connection_error
+                    )
+                }
+            }
+        }
+    }
+
+    private fun guardarVehiculo() {
+        val typeVehicle = getTypeVehicle()
+        val vehiculoItem = VehiculoItem(
+            true,
+            "",
+            binding.txtMarca.text.toString(),
+            binding.txtMatricula.text.toString(),
+            binding.txtModelo.text.toString(),
+            binding.txtPaisMatricula.text.toString(),
+            typeVehicle
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitObject.getCallRetrofit().newVehiculo(vehiculoItem)
+                if (response.isSuccessful) {
+                    runOnUiThread {
+                        guardarVehiculoSeguro(response.body()?.idVehiculo)
+                    }
+                } else {
+                    runOnUiThread {
+                        DialogAlert.showDialogAlert(
+                            this@NewVehiculoParteActivity,
+                            "No es posible conectar con los servidores de Crash Car",
+                            R.raw.ic_connection_error
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    DialogAlert.showDialogAlert(
+                        this@NewVehiculoParteActivity,
+                        "No es posible conectar con los servidores de Crash Car",
+                        R.raw.ic_connection_error
+                    )
+                }
+            }
+        }
+    }
+
+    private fun guardarVehiculoSeguro(idVehiculo: Int?) {
+        if (idVehiculo != null) {
+            val vehiculoSegurosItem = VehiculoSeguro(
+                binding.textFechaVencimientoCartaVerde.text.toString(),
+                binding.textFechaInicioCartaVerde.text.toString(),
+                idVehiculo,
+                null,
+                binding.txtNCartaVerde.text.toString(),
+                binding.txtNPoliza.text.toString()
+            )
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = RetrofitObject.getCallRetrofit().saveVehiculoSeguro(vehiculoSegurosItem)
+                    if (response.isSuccessful) {
+                        runOnUiThread {
+                            vehiculoParte.idVehiculo = response.body()?.idVehiculoSeguro
+                            guardarConductor(response.body()?.idVehiculoSeguro)
+                        }
+                    } else {
+                        runOnUiThread {
+                            DialogAlert.showDialogAlert(
+                                this@NewVehiculoParteActivity,
+                                "No es posible conectar con los servidores de Crash Car",
+                                R.raw.ic_connection_error
+                            )
+                        }
+                    }
+                } catch (e: Exception) {
+                    runOnUiThread {
+                        DialogAlert.showDialogAlert(
+                            this@NewVehiculoParteActivity,
+                            "No es posible conectar con los servidores de Crash Car",
+                            R.raw.ic_connection_error
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private fun guardarConductor(idVehiculoSeguro: Int?) {
+        if (idVehiculoSeguro != null) {
+            val conductorItem = ConductorItem(
+                binding.txtApellidosConductor.text.toString(),
+                binding.txtCodPostalConductor.text.toString().toInt(),
+                binding.txtDireccionConductor.text.toString(),
+                binding.txtDniConductor.text.toString(),
+                binding.txtEmailConductor.text.toString(),
+                null,
+                binding.txtLocalidadConductor.text.toString(),
+                binding.txtNombreConductor.text.toString(),
+                binding.txtPaisConductor.text.toString(),
+                binding.txtTelfConductor.text.toString()
+            )
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = RetrofitObject.getCallRetrofit().saveConductor(conductorItem)
+                    if (response.isSuccessful) {
+                        runOnUiThread {
+                            vehiculoParte.idConductor = response.body()?.idConductor
+                            guardarSeguro(idVehiculoSeguro, response.body()?.idConductor ?: 0)
+                        }
+                    } else {
+                        runOnUiThread {
+                            DialogAlert.showDialogAlert(
+                                this@NewVehiculoParteActivity,
+                                "No es posible conectar con los servidores de Crash Car",
+                                R.raw.ic_connection_error
+                            )
+                        }
+                    }
+                } catch (e: Exception) {
+                    runOnUiThread {
+                        DialogAlert.showDialogAlert(
+                            this@NewVehiculoParteActivity,
+                            "No es posible conectar con los servidores de Crash Car",
+                            R.raw.ic_connection_error
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private fun guardarSeguro(idVehiculoSeguro: Int, idConductor: Int) {
+        val segurosItem = SegurosItem(
+            true,
+            binding.txtDireccionAseguradora.text.toString(),
+            "",
+            binding.txtEmailAgencia.text.toString(),
+            null,
+            Gson().toJson(ArrayList<ConductorId>().add(ConductorId(idConductor))),
+            Gson().toJson(ListIdVehiculoSeguro().add(IdVehiculoSeguro(idVehiculoSeguro))),
+            binding.txtNombreAseguradora.text.toString(),
+            binding.txtNombreAseguradora.text.toString(),
+            binding.txtPaisAgencia.text.toString(),
+            binding.txtTelfAgencia.text.toString()
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitObject.getCallRetrofit().saveSeguro(segurosItem)
+                if (response.isSuccessful) {
+                    runOnUiThread {
+                        vehiculoParte.idSeguro = response.body()?.idSeguro ?: 0
+                        createNewVehiculoParte()
+                    }
+                } else {
+                    runOnUiThread {
+                        DialogAlert.showDialogAlert(
+                            this@NewVehiculoParteActivity,
+                            "No es posible conectar con los servidores de Crash Car",
+                            R.raw.ic_connection_error
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    DialogAlert.showDialogAlert(
+                        this@NewVehiculoParteActivity,
+                        "No es posible conectar con los servidores de Crash Car",
+                        R.raw.ic_connection_error
+                    )
+                }
+            }
+        }
+    }
+
+    private fun createNewVehiculoParte() {
+        val newVehiculoParte = VehiculoParte(
+            null,
+            vehiculoParte.idVehiculo,
+            vehiculoParte.idSeguro,
+            getCircunstancias(),
+            binding.checkRemolque.isChecked,
+            binding.txtMatriculaRemolque.text.toString(),
+            binding.txtPaisMatriculaRemolque.text.toString(),
+            binding.selectPoint.selectedItem.toString(),
+            "",
+            binding.txtObservaciones.text.toString(),
+            vehiculoParte.idAsegurado,
+            vehiculoParte.idConductor
+        )
+        val intent = Intent()
+        intent.putExtra("vehiculoParte", Gson().toJson(newVehiculoParte))
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    private fun getCircunstancias(): String {
+        val circunstancias = Circunstancias()
+        circunstancias.addAll(
+            listOf(
+                Circunstancia("1", binding.checkC1.isChecked),
+                Circunstancia("2", binding.checkC2.isChecked),
+                Circunstancia("3", binding.checkC3.isChecked),
+                Circunstancia("4", binding.checkC4.isChecked),
+                Circunstancia("5", binding.checkC5.isChecked),
+                Circunstancia("6", binding.checkC6.isChecked),
+                Circunstancia("7", binding.checkC7.isChecked),
+                Circunstancia("8", binding.checkC8.isChecked),
+                Circunstancia("9", binding.checkC9.isChecked),
+                Circunstancia("10", binding.checkC10.isChecked),
+                Circunstancia("11", binding.checkC11.isChecked),
+                Circunstancia("12", binding.checkC12.isChecked),
+                Circunstancia("13", binding.checkC13.isChecked),
+                Circunstancia("14", binding.checkC14.isChecked),
+                Circunstancia("15", binding.checkC15.isChecked),
+                Circunstancia("16", binding.checkC16.isChecked),
+                Circunstancia("17", binding.checkC17.isChecked)
+            )
+        )
+        return Gson().toJson(circunstancias)
     }
 }
 

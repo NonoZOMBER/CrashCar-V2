@@ -152,6 +152,9 @@ class ConductorActivity : AppCompatActivity() {
                 )
                 if (response.isSuccessful) {
                     runOnUiThread {
+                        val intent = Intent()
+                        intent.putExtra("idConductor", response.body()?.idConductor)
+                        setResult(Activity.RESULT_OK, intent)
                         finish()
                     }
                 } else {
