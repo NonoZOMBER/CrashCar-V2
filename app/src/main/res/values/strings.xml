@@ -38,6 +38,7 @@
     <string name="lbl_num_poliza">Nº Póliza:\n  %s</string>
     <string name="lbl_phone_item">  Teléfono: %s</string>
     <string name="query_delete_seguro">¿Desea eliminar este seguro?</string>
+    <string name="query_delete_image">¿Desea eliminar esta imagen?</string>
     <string name="query_delete_parte">¿Desea eliminar este parte?</string>
     <string name="query_delete_conductor">¿Desea eliminar este conductor?</string>
     <string name="query_delete_vehiculo_seguro">¿Desea eliminar este conductor?</string>
@@ -72,4 +73,5 @@
     <string name="lblSelectVehiculoSeguro">SELECCIONA EL VEHÍCULO</string>
     <string name="lblSelectConductor">SELECCIONA AL CONDUCTOR</string>
     <string name="verifyMyDataInjected">Los datos han sido importados con éxito</string>
+    <string name="firmar">FIRMA %s</string>
 </resources>

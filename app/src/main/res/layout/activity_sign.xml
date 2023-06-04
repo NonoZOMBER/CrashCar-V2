@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.activities.partes.NewParteActivity">
+    tools:context=".ui.home.activities.partes.view_ui_newparte.SignActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,43 +23,37 @@
             android:src="@drawable/ic_close" />
 
         <TextView
-            android:id="@+id/lblSeguroActivity"
+            android:id="@+id/lblSightActivity"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center|start"
             android:textColor="@color/white"
-            android:text="REGISTRAR PARTE"
+            android:text="@string/firmar"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/btnReloadNewParte"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginHorizontal="15sp"
-                android:background="@drawable/ic_refresh"/>
-
-        </FrameLayout>
     </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <com.github.gcacace.signaturepad.views.SignaturePad
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/signaturePad"
         android:layout_marginTop="?attr/actionBarSize"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_height="match_parent"
+        android:background="#BFBFBF"
+        app:penColor="@color/black" />
+
+    <Button
+        android:id="@+id/btn_firmar"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/azul_claro"
+        android:text="FIRMAR"
+        android:layout_margin="20sp"
+        android:elevation="10sp"
+        android:textColor="@color/black"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:navGraph="@navigation/nav_new_parte" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

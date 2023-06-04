@@ -17,7 +17,8 @@ import com.zcode.crashcar.api.controller.TestigoItem
  */
 class AdapterItemTestigo(
     private val listTestigos: List<TestigoItem>,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener?,
+    private val delete: Boolean
 ) : RecyclerView.Adapter<AdapterItemTestigo
 .ViewHolder>() {
 
@@ -49,7 +50,8 @@ class AdapterItemTestigo(
             btnDelete.setOnClickListener {
                 showDialogDeleteItem(item, position, itemView.context)
             }
-            container.setOnClickListener { listener.onItemClick(item, position) }
+            if (!delete) btnDelete.visibility = View.GONE
+            container.setOnClickListener { listener?.onItemClick(item, position) }
         }
     }
 
@@ -58,7 +60,7 @@ class AdapterItemTestigo(
         builder.setMessage(context.getString(R.string.query_delete_conductor))
             .setCancelable(false)
             .setPositiveButton(context.getString(R.string.affirmationResponse)) { _, _ ->
-                listener.deleteItem(position)
+                listener?.deleteItem(position)
             }
             .setNegativeButton(context.getString(R.string.negationResponse)) { dialog, _ -> dialog.cancel() }
         val alert = builder.create()

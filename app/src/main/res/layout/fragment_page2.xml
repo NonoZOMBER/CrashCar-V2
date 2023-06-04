@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vehiculo A"
+                    android:text="Vehículo A"
                     android:textColor="@color/white"
                     android:gravity="center_vertical"
                     android:textSize="25sp"
@@ -76,7 +76,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vehiculo B"
+                    android:text="Vehículo B"
                     android:textColor="@color/white"
                     android:gravity="center_vertical"
                     android:textSize="25sp"
@@ -115,60 +115,17 @@
 
             </androidx.cardview.widget.CardView>
 
-            <FrameLayout
+            <Button
+                android:id="@+id/btnNextPage"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/blue_secundary"
-                android:layout_marginTop="15sp">
-
-                <LinearLayout
-                    android:id="@+id/btnBackPage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="start">
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_back_arrow"
-                        android:backgroundTint="@color/white"
-                        android:layout_marginEnd="5sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Atrás"
-                        android:textSize="19sp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btnNextPage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="end">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Continuar"
-                        android:textSize="19sp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"/>
-
-                    <ImageButton
-                        android:layout_marginStart="5sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_next_arrow"
-                        android:backgroundTint="@color/white"/>
-
-                </LinearLayout>
-            </FrameLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:backgroundTint="@color/azul_claro"
+                android:elevation="10sp"
+                android:text="SIGUIENTE"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

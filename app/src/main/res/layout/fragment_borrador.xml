@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout5"
+    android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_secundary"
-    tools:context=".ui.home.activities.partes.view_ui_newparte.Page1Fragment">
+    tools:context=".ui.home.activities.partes.view_ui_newparte.BorradorFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -23,7 +23,19 @@
                 android:layout_marginStart="20sp"
                 android:layout_marginTop="11sp"
                 android:layout_marginEnd="20sp"
-                android:text="Fecha del Accidente *"
+                android:text="BORRADOR"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:text="Fecha del Accidente"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -65,6 +77,7 @@
                             android:layout_marginTop="7sp"
                             android:layout_marginEnd="7sp"
                             android:layout_marginBottom="7sp"
+                            android:enabled="false"
                             android:background="@null"
                             android:hint="DD/MM/YYYY"
                             android:inputType="date"
@@ -96,6 +109,7 @@
                             android:layout_marginTop="7sp"
                             android:layout_marginEnd="7sp"
                             android:layout_marginBottom="7sp"
+                            android:enabled="false"
                             android:background="@null"
                             android:hint="Hora Accidente"
                             android:inputType="time"
@@ -112,7 +126,7 @@
                 android:layout_marginStart="20sp"
                 android:layout_marginTop="11sp"
                 android:layout_marginEnd="20sp"
-                android:text="Localización *"
+                android:text="Localización"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -154,6 +168,7 @@
                             android:layout_marginTop="7sp"
                             android:layout_marginEnd="7sp"
                             android:layout_marginBottom="7sp"
+                            android:enabled="false"
                             android:background="@null"
                             android:hint="Introduce País Accidente"
                             android:inputType="textCapSentences"
@@ -185,6 +200,7 @@
                             android:layout_marginTop="7sp"
                             android:layout_marginEnd="7sp"
                             android:layout_marginBottom="7sp"
+                            android:enabled="false"
                             android:background="@null"
                             android:hint="Introduce Dirección Accidente"
                             android:inputType="textCapSentences|textMultiLine"
@@ -233,6 +249,7 @@
                             android:id="@+id/checkVictimas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:layout_margin="5dp" />
 
                         <TextView
@@ -285,6 +302,7 @@
                             android:id="@+id/checkOtherVehicles"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:layout_margin="5dp" />
 
                         <TextView
@@ -292,6 +310,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="10sp"
+
                             android:text="Vehículos distintos de A y B"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
@@ -311,6 +330,7 @@
                             android:id="@+id/checkDamageObjetos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:layout_margin="5dp" />
 
                         <TextView
@@ -343,14 +363,6 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <ImageButton
-                    android:id="@+id/btnNewTestigo"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
-                    android:layout_gravity="center_vertical|end"
-                    android:background="@drawable/ic_add"
-                    android:backgroundTint="@color/white" />
-
             </FrameLayout>
 
             <androidx.cardview.widget.CardView
@@ -377,18 +389,140 @@
             </androidx.cardview.widget.CardView>
 
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="35sp"
+                android:layout_marginEnd="20sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vehículo A"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listVehiculoA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="35sp"
+                android:layout_marginEnd="20sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vehículo B"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listVehiculoB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="35sp"
+                android:layout_marginEnd="20sp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Imágenes"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="11sp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="23sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listImages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
             <Button
-                android:id="@+id/btnNextPage"
+                android:id="@+id/btnSaveParte"
                 style="@style/Widget.Material3.Button.IconButton.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20sp"
                 android:backgroundTint="@color/azul_claro"
                 android:elevation="10sp"
-                android:text="SIGUIENTE"
+                android:text="FIRMAR Y GUARDAR"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

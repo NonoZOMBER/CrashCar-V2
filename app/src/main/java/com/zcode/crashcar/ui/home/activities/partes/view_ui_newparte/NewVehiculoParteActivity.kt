@@ -477,6 +477,7 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
 
     override fun onItemClick(item: ConductorItem, position: Int) {
         stateMyData(1)
+        vehiculoParte.idConductor = item.idConductor
         binding.txtNombreConductor.setText(item.nombre)
         binding.txtApellidosConductor.setText(item.apellidos)
         binding.txtDireccionConductor.setText(item.direccion)

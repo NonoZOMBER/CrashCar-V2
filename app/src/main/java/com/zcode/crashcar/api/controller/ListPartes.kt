@@ -9,7 +9,7 @@ class ListPartes : ArrayList<ParteItem>()
 
 data class ParteItem(
     @SerializedName("idUsuario")
-    var dniUsuario: String? = "",
+    var idUsuario: String? = "",
     @SerializedName("idParte")
     var idParte: Int? = null,
     @SerializedName("idsVehiculosParte")

@@ -113,4 +113,7 @@ interface ApiService {
 
     @POST("new/vehiculo-parte")
     suspend fun saveVehiculoParte(@Body vehiculoParte: VehiculoParte): Response<VehiculoParte>
+
+    @POST("new/parte")
+    suspend fun saveParte(@Body parteItem: ParteItem): Response<ParteItem>
 }

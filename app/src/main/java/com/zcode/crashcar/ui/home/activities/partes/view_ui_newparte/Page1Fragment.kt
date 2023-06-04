@@ -47,23 +47,34 @@ class Page1Fragment : Fragment(), AdapterItemTestigo.OnItemClickListener {
 
     private fun initComponent() {
         binding.recyclerTestigos.layoutManager = LinearLayoutManager(requireContext())
-        adapterTestigos = AdapterItemTestigo(listTestigos, this)
+        adapterTestigos = AdapterItemTestigo(listTestigos, this, true)
         binding.recyclerTestigos.adapter = adapterTestigos
         binding.btnNewTestigo.setOnClickListener {
-            showDialogTestigo(null, null)
+            if (listTestigos.size < 3) {
+                showDialogTestigo(null, null)
+            } else {
+                DialogAlert.showDialogAlert(
+                    requireContext(),
+                    "Solo puedes registrar un máximo de 3 testigos",
+                    R.raw.ic_caution
+                )
+            }
         }
         binding.btnNextPage.setOnClickListener {
             if (comprobar()) {
-                parteItem.fechAccidente = binding.textFechaAccidente.toString()
+                parteItem.fechAccidente = binding.textFechaAccidente.text.toString()
                 parteItem.direccion = binding.textLocationAccidente.text.toString()
-                parteItem.horaAccidente = binding.textHoraAccidente.toString()
-                parteItem.paisAccidente = binding.textPaisAccidente.toString()
+                parteItem.horaAccidente = binding.textHoraAccidente.text.toString()
+                parteItem.paisAccidente = binding.textPaisAccidente.text.toString()
                 parteItem.visctimas = binding.checkVictimas.isChecked
                 parteItem.damageMaterial = binding.checkDamageObjetos.isChecked
                 parteItem.isOtherVehicles = binding.checkOtherVehicles.isChecked
-                parteItem.testigo = getListStringTestigos()
+                parteItem.testigo = Gson().toJson(listTestigos)
                 view?.findNavController()
-                    ?.navigate(R.id.go_to_page2, bundleOf("parteItem" to (Gson().toJson(parteItem))))
+                    ?.navigate(
+                        R.id.go_to_page2,
+                        bundleOf("parteItem" to (Gson().toJson(parteItem)))
+                    )
             } else {
                 DialogAlert.showDialogAlert(
                     requireContext(),
@@ -74,13 +85,7 @@ class Page1Fragment : Fragment(), AdapterItemTestigo.OnItemClickListener {
         }
     }
 
-    private fun getListStringTestigos(): String {
-        val listTestigosId = ListTestigos()
-        for (testigo in listTestigos) {
-            testigo.id?.let { TestigoId(it) }?.let { listTestigosId.add(it) }
-        }
-        return Gson().toJson(listTestigosId)
-    }
+
 
     private fun comprobar(): Boolean {
         return binding.textFechaAccidente.text.isNotEmpty() &&
@@ -131,7 +136,8 @@ class Page1Fragment : Fragment(), AdapterItemTestigo.OnItemClickListener {
                         address.text.toString(),
                         phone.text.toString()
                     )
-                    saveTestigo(testigoItem)
+                    listTestigos.add(testigoItem)
+                    adapterTestigos.notifyItemInserted(listTestigos.size - 1)
                 }
                 alertDialog.dismiss()
             } else {
@@ -146,38 +152,8 @@ class Page1Fragment : Fragment(), AdapterItemTestigo.OnItemClickListener {
     }
 
     private fun updateTesigo(testigoItem: TestigoItem, position: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = testigoItem.id?.let {
-                    RetrofitObject.getCallRetrofit().updateTestigo(
-                        it, testigoItem
-                    )
-                }
-                if (response != null) {
-                    if (response.isSuccessful) {
-                        requireActivity().runOnUiThread {
-                            adapterTestigos.notifyItemChanged(position)
-                        }
-                    } else {
-                        requireActivity().runOnUiThread {
-                            DialogAlert.showDialogAlert(
-                                requireContext(),
-                                getString(R.string.error_connection),
-                                R.raw.ic_connection_error
-                            )
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                requireActivity().runOnUiThread {
-                    DialogAlert.showDialogAlert(
-                        requireContext(),
-                        getString(R.string.error_connection),
-                        R.raw.ic_connection_error
-                    )
-                }
-            }
-        }
+        listTestigos[position] = testigoItem
+        adapterTestigos.notifyItemChanged(position)
     }
 
     private fun saveTestigo(testigoItem: TestigoItem) {

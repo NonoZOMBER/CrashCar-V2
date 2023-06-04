@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/shape_dialog"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_secundary">
+
+            <TextView
+                android:id="@+id/lblTittleAlertDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="Reiniciar Parte"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/lblMessageAlertDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Seguro que desea volver a rellenar el parte?"
+            android:layout_margin="10sp"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|center_vertical"
+            android:layout_margin="10sp">
+
+            <FrameLayout
+                android:id="@+id/btn_cancel_reload"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40sp"
+                android:background="@drawable/shape_buttom_cancel">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="No"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_ok_reload"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40sp"
+                android:layout_marginStart="10sp"
+                android:background="@drawable/shape_buttom_ok">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Si"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
