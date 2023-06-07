@@ -3,6 +3,8 @@ package com.zcode.crashcar.adapter
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +17,7 @@ import com.zcode.crashcar.R
  *    Created by Nono on 04/06/2023.
  */
 class AdapterImagesParte(
-    private val listImages: ArrayList<Bitmap>,
+    private val listImages: ArrayList<String>,
     private val delete: Boolean
 ) : RecyclerView.Adapter<AdapterImagesParte.ViewHolder>() {
 
@@ -67,7 +69,12 @@ class AdapterImagesParte(
     override fun getItemCount(): Int = listImages.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listImages[position], position)
+        holder.bind(base64ToBitmap(listImages[position]), position)
+    }
+
+    private fun base64ToBitmap(base64: String): Bitmap {
+        val decodedBytes = Base64.decode(base64, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
     }
 
 }

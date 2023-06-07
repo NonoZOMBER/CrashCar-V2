@@ -5,7 +5,7 @@
     android:id="@+id/container_card_seguro"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10sp"
-    android:layout_margin="15sp"
+    android:layout_margin="10sp"
     app:cardBackgroundColor="@color/color_item"
     app:cardElevation="5sp">
 

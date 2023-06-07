@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,7 @@ import com.zcode.crashcar.api.controller.ParteItem
 import com.zcode.crashcar.api.controller.VehiculoParte
 import com.zcode.crashcar.databinding.FragmentPage3Binding
 import com.zcode.crashcar.utils.dialogs.DialogAlert
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 
@@ -37,7 +39,7 @@ class Page3Fragment : Fragment() {
     private lateinit var parte: ParteItem
     private lateinit var vehiculoA: VehiculoParte
     private lateinit var vehiculoB: VehiculoParte
-    private lateinit var listImages: ArrayList<Bitmap>
+    private lateinit var listImages: ArrayList<String>
     private lateinit var adapterImages: AdapterImagesParte
 
     companion object {
@@ -209,7 +211,7 @@ class Page3Fragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 val imageBitmap = it.data?.extras?.get("data") as Bitmap
-                listImages.add(imageBitmap)
+                listImages.add(bitmapToBase64(imageBitmap))
                 adapterImages.notifyItemInserted(listImages.size - 1)
             } else {
                 Log.i("Response", "No se ha obtenido ninguna imágen")
@@ -224,14 +226,25 @@ class Page3Fragment : Fragment() {
                     if (clipData != null) {
                         for (i in 0 until clipData.itemCount) {
                             val uri = clipData.getItemAt(i).uri
-                            getBitmapFromUri(uri)?.let { it1 -> listImages.add(it1) }
+                            getBitmapFromUri(uri)?.let { it1 -> listImages.add(bitmapToBase64(it1)) }
                             adapterImages.notifyItemInserted(listImages.size - 1)
                             if (listImages.size == 6) break
                         }
                     }
+                } else {
+                    val uri = it.data?.data as Uri
+                    getBitmapFromUri(uri)?.let { it1 -> listImages.add(bitmapToBase64(it1)) }
+                    adapterImages.notifyItemInserted(listImages.size - 1)
                 }
             } else {
                 Log.i("Response", "No se ha obtenido ninguna imágen")
             }
         }
+
+    private fun bitmapToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 1, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+    }
 }

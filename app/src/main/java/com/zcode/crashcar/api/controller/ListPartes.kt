@@ -10,7 +10,7 @@ class ListPartes : ArrayList<ParteItem>()
 data class ParteItem(
     @SerializedName("idUsuario")
     var idUsuario: String? = "",
-    @SerializedName("idParte")
+    @SerializedName("id")
     var idParte: Int? = null,
     @SerializedName("idsVehiculosParte")
     var vehiculosParte: String? = "", //Es un JSON con una lista de objetos VehiculoParte

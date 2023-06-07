@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.FrameLayout
 import android.widget.ImageButton
@@ -86,12 +88,40 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
                 binding.containerDataRemolque.animation = Animations.fadeInAnimation(this)
                 binding.containerDataRemolque.visibility = View.VISIBLE
             } else {
+                binding.containerDataRemolque.visibility = View.GONE
                 binding.containerDataRemolque.animation = Animations.fadeOutAnimation(this)
-                binding.containerDataRemolque.visibility = View.VISIBLE
             }
         }
         binding.spinnerTypeVehicle.adapter =
             SpinnerAdapterTypeVehicle(this, Herramientas.getSpinnerItemsTypeVehicles())
+
+        binding.imgTypeVehicle.setImageResource(
+            Herramientas.getIconVehicle(
+                getTypeVehicleById(0).lowercase()
+            )
+        )
+
+        binding.spinnerTypeVehicle.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                binding.imgTypeVehicle.post {
+                    binding.imgTypeVehicle.setImageResource(
+                        Herramientas.getIconVehicle(
+                            getTypeVehicleById(position).lowercase()
+                        )
+                    )
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
 
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, Herramientas.getSpinnerItemsPoints())
@@ -128,6 +158,13 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
         if (binding.spinnerTypeVehicle.selectedItemPosition == 0) return "Turismo"
         if (binding.spinnerTypeVehicle.selectedItemPosition == 1) return "Furgoneta/Camión"
         if (binding.spinnerTypeVehicle.selectedItemPosition == 2) return "Motocicleta"
+        return ""
+    }
+
+    private fun getTypeVehicleById(id: Int): String {
+        if (id == 0) return "Turismo"
+        if (id == 1) return "Furgoneta/Camión"
+        if (id == 2) return "Motocicleta"
         return ""
     }
 

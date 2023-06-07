@@ -44,7 +44,7 @@ class AdapterItemParte(
         private val context = itemView.context
 
         init {
-            textIdParte = view.findViewById(R.id.textNpolizaItem)
+            textIdParte = view.findViewById(R.id.textNumParteItem)
             textFechaParte = view.findViewById(R.id.textFechaParteItem)
             btnRemove = view.findViewById(R.id.btnRemoveItemParte)
             container = view.findViewById(R.id.container_card_parte)
@@ -54,7 +54,7 @@ class AdapterItemParte(
             textIdParte.text = String.format(context.getString(R.string.lblNumeroParte), item.idParte)
             textFechaParte.text = String.format(context.getString(R.string.lblFechaParte), item.fechAccidente)
             btnRemove.setOnClickListener { deleteDialogParte(item, position, context) }
-            container.setOnClickListener { /* Load View Resume Parte */ }
+            container.setOnClickListener { onItemSelect?.onItemSelect(item) }
         }
     }
 

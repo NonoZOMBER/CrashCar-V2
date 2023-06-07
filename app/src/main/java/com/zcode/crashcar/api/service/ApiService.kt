@@ -23,7 +23,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
-import retrofit2.http.Url
 
 /*
  *    Created by Nono on 20/05/2023.
@@ -71,7 +70,10 @@ interface ApiService {
     suspend fun saveSeguro(@Body seguro: SegurosItem): Response<SegurosItem>
 
     @PUT("update/seguro/{id}")
-    suspend fun updateSeguro(@Path("id") idSeguro: Int, @Body seguro: SegurosItem): Response<SegurosItem>
+    suspend fun updateSeguro(
+        @Path("id") idSeguro: Int,
+        @Body seguro: SegurosItem
+    ): Response<SegurosItem>
 
     @POST("new/vehiculo")
     suspend fun newVehiculo(@Body vahiculo: VehiculoItem): Response<VehiculoItem>
@@ -100,13 +102,19 @@ interface ApiService {
     ): Response<VehiculoSeguro>
 
     @PUT("update/parte/{id}")
-    suspend fun updateParte(@Path("id") idParte: Int, @Body itemParte: ParteItem): Response<ParteItem>
+    suspend fun updateParte(
+        @Path("id") idParte: Int,
+        @Body itemParte: ParteItem
+    ): Response<ParteItem>
 
     @POST("new/testigo")
     suspend fun saveTestigo(@Body newTestigo: TestigoItem): Response<TestigoItem>
 
     @PUT("update/testigo/{id}")
-    suspend fun updateTestigo(@Path("id") idTestigo: Int, @Body itemTestigo: TestigoItem): Response<TestigoItem>
+    suspend fun updateTestigo(
+        @Path("id") idTestigo: Int,
+        @Body itemTestigo: TestigoItem
+    ): Response<TestigoItem>
 
     @POST("new/asegurado")
     suspend fun saveAsegurado(@Body asegurado: Asegurado): Response<Asegurado>
@@ -116,4 +124,15 @@ interface ApiService {
 
     @POST("new/parte")
     suspend fun saveParte(@Body parteItem: ParteItem): Response<ParteItem>
+
+    @GET("id/vehiculo-parte/{id}")
+    suspend fun getVehiculoParte(@Path("id") id: Int): Response<VehiculoParte>
+
+    @GET("id/asegurado/{id}")
+    suspend fun getAsegurado(@Path("id") id: Int): Response<Asegurado>
+
+    @GET("id/testigo/{id}")
+    suspend fun getTestigo(@Path("id") id: Int): Response<TestigoItem>
+    @GET("id/parte/{id}")
+    suspend fun getParte(@Path("id") id: Int): Response<ParteItem>
 }

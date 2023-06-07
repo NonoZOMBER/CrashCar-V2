@@ -74,4 +74,7 @@
     <string name="lblSelectConductor">SELECCIONA AL CONDUCTOR</string>
     <string name="verifyMyDataInjected">Los datos han sido importados con éxito</string>
     <string name="firmar">FIRMA %s</string>
+    <string name="lbl_horaParte">Hora: %s</string>
+    <string name="lbl_direccion">Dirección: %s</string>
+    <string name="lbl_firma">Firma Vehiculo %s</string>
 </resources>

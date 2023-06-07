@@ -527,6 +527,7 @@
                         android:id="@+id/txtNombreConductor"
                         android:layout_width="match_parent"
                         android:layout_height="50sp"
+                        android:layout_marginTop="10sp"
                         android:background="@drawable/shape_edit_text"
                         android:hint="Nombre"
                         android:inputType="textCapSentences"
@@ -1063,7 +1064,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No respetó la señal de preferencia o semaforo en rojo"
+                            android:text="No respetó la señal de preferencia o semáforo en rojo"
                             android:textSize="17sp" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
