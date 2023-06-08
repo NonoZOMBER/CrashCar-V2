@@ -612,13 +612,13 @@ class ViewParteActivity : AppCompatActivity() {
         file = pdfFile
     }
 
-    private fun loadStringTestigos(): String? {
+    private fun loadStringTestigos(): String {
         val stringBuilder = StringBuilder()
         for (testigo in testigos!!) {
             stringBuilder.append(
                 "Nombre: ${testigo.nombre}, " +
                         "Dirección: ${testigo.direccion}, " +
-                        "Teléfono: ${testigo.telefono}\n"
+                        "Teléfono: ${testigo.telefono}\n\n"
             )
         }
         return stringBuilder.toString()
