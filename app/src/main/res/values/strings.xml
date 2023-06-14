@@ -8,7 +8,7 @@
     <string name="lblNotItemPartes">No hay Partes registrados\nen este momento</string>
     <string name="lblNotItemSeguros">No hay Seguros registrados\nen este momento</string>
     <string name="lblNotItemVehiculos">No hay Vehiculos registrados\nen este momento</string>
-    <string name="registerCar">Coches registrados: %s</string>
+    <string name="registerCar">Vehículos registrados: %s</string>
     <string name="registerSeguros">Seguros registrados: %s</string>
     <string name="registerPartes">Partes registrados: %s</string>
     <string name="todo">TODO</string>
