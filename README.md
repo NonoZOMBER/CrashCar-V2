@@ -1,4 +1,4 @@
-#Crash Car APP 📱
+#📱 CrashCar 
 
 <p align="center">
 <img align="center" src="https://i.imgur.com/Bp9zIHO.png" />
