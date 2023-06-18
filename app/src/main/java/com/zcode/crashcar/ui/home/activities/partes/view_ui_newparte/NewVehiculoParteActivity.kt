@@ -175,9 +175,23 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
 
 
     private fun comprobarCircunstanciasObligatorias(): Boolean {
-        return if (binding.checkC1.isChecked && !binding.checkC2.isChecked) {
-            true
-        } else !binding.checkC1.isChecked && binding.checkC2.isChecked
+        return binding.checkC1.isChecked ||
+                binding.checkC2.isChecked ||
+                binding.checkC3.isChecked ||
+                binding.checkC4.isChecked ||
+                binding.checkC5.isChecked ||
+                binding.checkC6.isChecked ||
+                binding.checkC7.isChecked ||
+                binding.checkC8.isChecked ||
+                binding.checkC9.isChecked ||
+                binding.checkC10.isChecked ||
+                binding.checkC11.isChecked ||
+                binding.checkC12.isChecked ||
+                binding.checkC13.isChecked ||
+                binding.checkC14.isChecked ||
+                binding.checkC15.isChecked ||
+                binding.checkC16.isChecked ||
+                binding.checkC17.isChecked
     }
 
     private fun registrarVehiculoParte() {
@@ -189,7 +203,7 @@ class NewVehiculoParteActivity : AppCompatActivity(), AdapterItemSeguros.OnSizeC
                     } else {
                         DialogAlert.showDialogAlert(
                             this,
-                            "Debes seleccionar una de las dos circunstancias obligatorias",
+                            "Debes seleccionar una de las circunstancias",
                             R.raw.ic_caution
                         )
                     }
