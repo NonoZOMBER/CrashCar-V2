@@ -1,4 +1,4 @@
-<h1>📱 CrashCar </h1> 
+<h1> CrashCar APP 📱 </h1> 
 
 <p align="center">
 <img align="center" src="https://i.imgur.com/Bp9zIHO.png" />
